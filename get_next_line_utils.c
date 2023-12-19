@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/16 15:35:13 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:10:27 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,26 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 }
 
-
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	tlen;
 	char	*s;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (s1 == NULL)
+		return (strdup(s2));
+	if (s2 == NULL)
+		return (strdup(s1));
 	tlen = ft_strlen(s1) + ft_strlen(s2) +1;
 	s = (char *) malloc (tlen);
 	if (s == NULL)
 	{
+		free(s1);
+		free(s2);
 		return (NULL);
 	}
 	ft_strlcpy(s, s1, tlen);
 	ft_strlcpy(s + ft_strlen(s1), s2, tlen);
+	free(s1);
 	return (s);
 }
 
@@ -88,4 +92,3 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-
