@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/19 22:10:27 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:46:36 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,46 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (s);
 }
 
-size_t	ft_strlen(const char *str)
+
+char	*ft_strdup(const char *s1)
 {
 	size_t	i;
+	size_t	len;
+	char	*ptr;
 
 	i = 0;
-	while (str[i] != '\0')
+	len = ft_strlen(s1) + 1;
+	ptr = (char *) malloc(len * sizeof(char));
+	if (ptr == NULL)
 	{
+		return (NULL);
+	}
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
 		i++;
 	}
-	return (i);
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+
+char	*ft_strndup(const char *s1 , size_t n)
+{
+    size_t	i;
+    char	*ptr;
+
+    i = 0;
+    ptr = (char *) malloc((n + 1) * sizeof(char));
+    if (ptr == NULL)
+    {
+        return (NULL);
+    }
+    while (i < n && s1[i] != '\0')
+    {
+        ptr[i] = s1[i];
+        i++;
+    }
+    ptr[i] = '\0';
+    return (ptr);
 }
