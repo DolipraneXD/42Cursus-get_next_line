@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/20 18:46:36 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:17:04 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	ft_strlcpy(s, s1, tlen);
 	ft_strlcpy(s + ft_strlen(s1), s2, tlen);
-	free(s1);
-	return (s);
+	return (free(s1), s1 = NULL, s);
 }
 
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	size_t	i;
 	size_t	len;
@@ -92,6 +91,7 @@ char	*ft_strdup(const char *s1)
 	len = ft_strlen(s1) + 1;
 	ptr = (char *) malloc(len * sizeof(char));
 	if (ptr == NULL)
+	
 	{
 		return (NULL);
 	}
@@ -101,11 +101,12 @@ char	*ft_strdup(const char *s1)
 		i++;
 	}
 	ptr[i] = '\0';
+	// free(s1);
 	return (ptr);
 }
 
 
-char	*ft_strndup(const char *s1 , size_t n)
+char	*ft_strndup(char *s1 , size_t n)
 {
     size_t	i;
     char	*ptr;
@@ -122,5 +123,6 @@ char	*ft_strndup(const char *s1 , size_t n)
         i++;
     }
     ptr[i] = '\0';
+	// free(s1);
     return (ptr);
 }
