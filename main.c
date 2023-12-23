@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:11:29 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/22 16:22:58 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/23 19:47:59 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,9 @@ void	f(void)
 }
 int	main(void)
 {
-	atexit(f);
+	// atexit(f);
 	int fd = open("test.txt",  O_RDONLY);
-	char *s;
-	int i;
-	i = 1;
-	s = get_next_line(fd);
-	while(s)
-	{
-		printf("%d:==> %s",i, s);
-		free(s);
-		i++;
-		s = get_next_line(fd);
-	}
-	if (s)
-		free(s);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	close(fd);
 }

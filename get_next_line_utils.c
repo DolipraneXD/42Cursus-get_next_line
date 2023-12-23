@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/21 21:17:04 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/23 14:52:31 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s == NULL)
 	{
 		free(s1);
-		free(s2);
+		// free(s2);
 		return (NULL);
 	}
 	ft_strlcpy(s, s1, tlen);
