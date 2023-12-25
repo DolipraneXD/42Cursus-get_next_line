@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:11:29 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/23 19:47:59 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/23 21:35:47 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ int	main(void)
 {
 	// atexit(f);
 	int fd = open("test.txt",  O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	char *s;
+	s = get_next_line(fd);
+	while (s)
+	{
+		printf("%s", s);
+		s = get_next_line(fd);
+	}
 	close(fd);
 }

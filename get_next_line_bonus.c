@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 15:58:38 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 14:05:28 by moel-fat         ###   ########.fr       */
+/*   Created: 2023/12/25 14:45:33 by moel-fat          #+#    #+#             */
+/*   Updated: 2023/12/25 17:39:12 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*checknewline(char **save, char *buffer, char *newline_pos)
+char	*checknl(char **save, char *buffer, char *newline_pos)
 {
 	char	*temp;
 	char	*line;
@@ -61,29 +61,29 @@ char	*ft_return(ssize_t *count, char **save, char **line, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*buffer;
 	char		*line;
 	ssize_t		count;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
-		return (free(save), save = NULL, NULL);
+		return (free(save[fd]), save[fd] = NULL, NULL);
 	buffer = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!buffer)
-		return (free(save), save = NULL, NULL);
+		return (free(save[fd]), save[fd] = NULL, NULL);
 	line = NULL;
 	count = 1;
-	if (save && strchr(save, '\n'))
-		return (line = checknewline(&save, buffer, strchr(save, '\n')));
+	if (save[fd] && strchr(save[fd], '\n'))
+		return (line = checknl(&save[fd], buffer, strchr(save[fd], '\n')));
 	while (count > 0)
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
 		buffer[count] = '\0';
-		save = ft_strjoin(save, buffer);
-		if (!save)
-			return (free(buffer), save = NULL, NULL);
-		if (ft_strchr(save, '\n'))
-			return (line = checknewline(&save, buffer, strchr(save, '\n')));
+		save[fd] = ft_strjoin(save[fd], buffer);
+		if (!save[fd])
+			return (free(buffer), save[fd] = NULL, NULL);
+		if (ft_strchr(save[fd], '\n'))
+			return (line = checknl(&save[fd], buffer, strchr(save[fd], '\n')));
 	}
-	return (ft_return(&count, &save, &line, &buffer));
+	return (ft_return(&count, &save[fd], &line, &buffer));
 }
