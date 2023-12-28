@@ -6,14 +6,14 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:35 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 14:07:06 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:08:17 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE -1
 # endif 
 # include <libc.h>
 

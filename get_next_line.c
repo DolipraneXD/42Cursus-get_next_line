@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:38 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 14:05:28 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:18:41 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*checknewline(char **save, char *buffer, char *newline_pos)
+char	*cnl(char **save, char *buffer, char *newline_pos)
 {
 	char	*temp;
 	char	*line;
@@ -74,7 +74,7 @@ char	*get_next_line(int fd)
 	line = NULL;
 	count = 1;
 	if (save && strchr(save, '\n'))
-		return (line = checknewline(&save, buffer, strchr(save, '\n')));
+		return (line = cnl(&save, buffer, ft_strchr(save, '\n')));
 	while (count > 0)
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 		if (!save)
 			return (free(buffer), save = NULL, NULL);
 		if (ft_strchr(save, '\n'))
-			return (line = checknewline(&save, buffer, strchr(save, '\n')));
+			return (line = cnl(&save, buffer, ft_strchr(save, '\n')));
 	}
 	return (ft_return(&count, &save, &line, &buffer));
 }

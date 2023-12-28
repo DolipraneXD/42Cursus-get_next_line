@@ -148,3 +148,48 @@
 // 	free(buffer);
 //     return (NULL);
 // }
+
+
+
+// char    *read_line(int fd, char **save, char **buffer, char **line)
+// {
+//     ssize_t        count;
+
+//     count = 1;
+//     while (count > 0)
+//     {
+//         count = read(fd, *buffer, BUFFER_SIZE);
+//         if (count < 0)
+//             break;
+//         (*buffer)[count] = '\0';
+//         *save = ft_strjoin(*save, *buffer);
+//         if (!*save)
+//             return (free(*buffer), *save = NULL, NULL);
+//         if (ft_strchr(*save, '\n'))
+//             return (checknl(save, *buffer, strchr(*save, '\n')));
+//     }
+//     if (*save && **save)
+//     {
+//         *line = ft_strdup(*save);
+//         if (!*line)
+//             return (free(*buffer), free(*save), *save = NULL, NULL);
+//         return (free(*save), *save = NULL, free(*buffer), *line);
+//     }
+//     return (ft_return(&count, &save[fd], &*line, &*buffer));
+// }
+// char    *get_next_line(int fd)
+// {
+//     static char    *save[OPEN_MAX];
+//     char        *buffer;
+//     char        *line;
+
+//     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
+//         return (free(save[fd]), save[fd] = NULL, NULL);
+//     buffer = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
+//     if (!buffer)
+//         return (free(save[fd]), save[fd] = NULL, NULL);
+//     line = NULL;
+//     if (save[fd] && strchr(save[fd], '\n'))
+//         return (line = checknl(&save[fd], buffer, strchr(save[fd], '\n')));
+//     return (read_line(fd, &save[fd], &buffer, &line));
+// }

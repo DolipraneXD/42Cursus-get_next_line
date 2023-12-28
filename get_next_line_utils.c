@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 14:04:56 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:53:35 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*s;
 
 	if (s1 == NULL)
-		return (strdup(s2));
+		return (ft_strdup(s2));
 	if (s2 == NULL)
-		return (strdup(s1));
+		return (ft_strdup(s1));
 	tlen = ft_strlen(s1) + ft_strlen(s2) +1;
 	s = (char *) malloc (tlen);
 	if (s == NULL)

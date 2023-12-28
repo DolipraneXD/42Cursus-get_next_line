@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 14:45:33 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 17:39:12 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:17:01 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*checknl(char **save, char *buffer, char *newline_pos)
+char	*cnl(char **save, char *buffer, char *newline_pos)
 {
 	char	*temp;
 	char	*line;
@@ -33,7 +33,7 @@ char	*checknl(char **save, char *buffer, char *newline_pos)
 	line = NULL;
 	line = ft_strndup(*save, newline_pos - *save + 1);
 	if (!line)
-		return (free(buffer), free(*save), *save = NULL, NULL);
+		return (free(buffer), free(*save), free(temp), *save = NULL, NULL);
 	temp = ft_strdup(newline_pos + 1);
 	if (!temp)
 		return (free(buffer), free(line), free(*save), *save = NULL, NULL);
@@ -54,9 +54,18 @@ char	*ft_return(ssize_t *count, char **save, char **line, char **buffer)
 			return (free(*buffer), free(*save), *save = NULL, NULL);
 		return (free(*save), *save = NULL, free(*buffer), *line);
 	}
-	if (!*line && *count == 0)
+	if (line && !*line && *count == 0)
 		return (free(*save), free(*buffer), *save = NULL, *save);
 	return (free(*buffer), NULL);
+}
+
+int	handle(int fd, char **line, ssize_t *count)
+{
+	*count = 1;
+	*line = NULL;
+	if (fd < 0 || fd > OPEN_MAX)
+		return (1);
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -66,15 +75,15 @@ char	*get_next_line(int fd)
 	char		*line;
 	ssize_t		count;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
+	if (handle(fd, &line, &count))
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 		return (free(save[fd]), save[fd] = NULL, NULL);
 	buffer = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!buffer)
 		return (free(save[fd]), save[fd] = NULL, NULL);
-	line = NULL;
-	count = 1;
-	if (save[fd] && strchr(save[fd], '\n'))
-		return (line = checknl(&save[fd], buffer, strchr(save[fd], '\n')));
+	if (save[fd] && ft_strchr(save[fd], '\n'))
+		return (line = cnl(&save[fd], buffer, ft_strchr(save[fd], '\n')));
 	while (count > 0)
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
@@ -83,7 +92,7 @@ char	*get_next_line(int fd)
 		if (!save[fd])
 			return (free(buffer), save[fd] = NULL, NULL);
 		if (ft_strchr(save[fd], '\n'))
-			return (line = checknl(&save[fd], buffer, strchr(save[fd], '\n')));
+			return (line = cnl(&save[fd], buffer, ft_strchr(save[fd], '\n')));
 	}
 	return (ft_return(&count, &save[fd], &line, &buffer));
 }
