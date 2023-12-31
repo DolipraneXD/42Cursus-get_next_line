@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 14:45:46 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/25 14:46:49 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/29 12:58:59 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *s1);
 char	*ft_strndup(char *s1, size_t n);
-char	*checknewline(char **save, char *buffer, char *newline_pos);
+char	*cnl(char **save, char *buffer, char *newline_pos);
+char	*ft_return(ssize_t *count, char **save, char **line, char **buffer);
+int		handle(int fd, char **line, ssize_t *count);
 
 #endif

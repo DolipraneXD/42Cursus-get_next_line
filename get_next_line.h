@@ -6,14 +6,14 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:35 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/28 20:08:17 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/29 12:59:04 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE -1
+#  define BUFFER_SIZE 10
 # endif 
 # include <libc.h>
 
@@ -24,6 +24,7 @@ size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *s1);
 char	*ft_strndup(char *s1, size_t n);
-char	*checknewline(char **save, char *buffer, char *newline_pos);
+char	*cnl(char **save, char *buffer, char *newline_pos);
+char	*ft_return(ssize_t *count, char **save, char **line, char **buffer);
 
 #endif

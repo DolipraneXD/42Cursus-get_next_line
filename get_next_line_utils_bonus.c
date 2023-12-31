@@ -6,11 +6,11 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 14:45:49 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/28 17:58:29 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/29 12:45:49 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {

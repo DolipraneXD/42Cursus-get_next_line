@@ -6,7 +6,7 @@
 /*   By: moel-fat <moel-fat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:58:38 by moel-fat          #+#    #+#             */
-/*   Updated: 2023/12/28 20:18:41 by moel-fat         ###   ########.fr       */
+/*   Updated: 2023/12/29 12:37:07 by moel-fat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*get_next_line(int fd)
 		return (free(save), save = NULL, NULL);
 	line = NULL;
 	count = 1;
-	if (save && strchr(save, '\n'))
+	if (save && ft_strchr(save, '\n'))
 		return (line = cnl(&save, buffer, ft_strchr(save, '\n')));
 	while (count > 0)
 	{
